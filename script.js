@@ -91,17 +91,20 @@ function addMaterial() {
 		return;
 	}
 
-	buildings[buildingName][materialName] = quantity;
+	// 英語で入力された場合は日本語に変換して保存
+	const japaneseName = getJapaneseMaterialName(materialName);
+	buildings[buildingName][japaneseName] = quantity;
 
 	materialInput.value = '';
 	quantityInput.value = '';
 
 	updateBuildingsList();
 	saveData(); // 自動保存
+	const displayName = translateMaterial(japaneseName);
 	showMessage(
 		formatText(getText('messages.materialAdded'), {
 			building: buildingName,
-			material: materialName,
+			material: displayName,
 			quantity,
 		}),
 		'success'
@@ -216,12 +219,15 @@ function updateBuildingsList() {
 
 				const info = document.createElement('span');
 				info.className = 'material-info';
-				info.textContent = `${materialName}: ${quantity}個`;
+				const displayName = translateMaterial(materialName);
+				const unit = currentLanguage === 'en' ? 'items' : '個';
+				info.textContent = `${displayName}: ${quantity}${unit}`;
 
 				const delBtn = document.createElement('button');
 				delBtn.textContent = '❌';
 				delBtn.className = 'delete-btn material-delete';
-				delBtn.title = '材料を削除';
+				delBtn.title =
+					currentLanguage === 'en' ? 'Delete material' : '材料を削除';
 				delBtn.onclick = () => deleteMaterial(buildingName, materialName);
 
 				item.appendChild(info);
@@ -452,10 +458,12 @@ function displayResults(title, baseMaterials) {
 						  )}</span>`;
 			}
 
+			const displayName = translateMaterial(material);
+			const unit = currentLanguage === 'en' ? ' items' : '個';
 			html += `<div class="material-result">
-                <span class="material-name">${material}</span>
+                <span class="material-name">${displayName}</span>
                 <span>
-                    <span class="material-quantity">× ${quantity}個</span>
+                    <span class="material-quantity">× ${quantity}${unit}</span>
                     ${stackInfo}
                 </span>
             </div>`;
@@ -556,6 +564,8 @@ function setupMaterialAutocomplete() {
 
 // 初期化
 document.addEventListener('DOMContentLoaded', function () {
+	loadData();
+	updateMaterialList();
 	setupMaterialAutocomplete();
 
 	// Enterキーイベント
@@ -590,10 +600,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		);
 	}, 1000);
 });
-// ページ読み込み時にデータを復元
-document.addEventListener('DOMContentLoaded', function () {
-	loadData();
-});
+// ページ読み込み時にデータを復元（統合済み）
 // 全データをクリア
 function clearAllData() {
 	if (confirm(getText('messages.confirmClearAll'))) {
@@ -643,4 +650,54 @@ function updateLanguage() {
 
 	// 建物一覧とセレクトボックスを更新
 	updateBuildingsList();
+	updateMaterialList();
+}
+// 材料のオートコンプリートリストを更新
+function updateMaterialList() {
+	const datalist = document.getElementById('materialList');
+	datalist.innerHTML = '';
+
+	// よく使われる材料のリスト
+	const commonMaterials = [
+		'サクラの木材',
+		'サクラの階段',
+		'サクラのハーフブロック',
+		'サクラのフェンス',
+		'オークの木材',
+		'オークの階段',
+		'オークのハーフブロック',
+		'オークのフェンス',
+		'スプルースの木材',
+		'スプルースの階段',
+		'スプルースのハーフブロック',
+		'シラカバの木材',
+		'シラカバの階段',
+		'シラカバのハーフブロック',
+		'石',
+		'丸石',
+		'石レンガ',
+		'石の階段',
+		'石のハーフブロック',
+		'花崗岩',
+		'閃緑岩',
+		'安山岩',
+		'深層岩',
+		'凝灰岩',
+		'砂岩',
+		'砂岩の階段',
+		'砂岩のハーフブロック',
+		'ガラス',
+		'板ガラス',
+		'鉄インゴット',
+		'金インゴット',
+		'松明',
+		'ランタン',
+		'グロウストーン',
+	];
+
+	commonMaterials.forEach((material) => {
+		const option = document.createElement('option');
+		option.value = translateMaterial(material);
+		datalist.appendChild(option);
+	});
 }
