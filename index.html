@@ -83,11 +83,12 @@
 							margin-bottom: var(--spacing-lg);
 						"
 					>
-						<h2>🏘️ 建物一覧</h2>
+						<h2 data-text="buildingsList">🏘️ 建物一覧</h2>
 						<button
 							onclick="clearAllData()"
 							class="delete-btn"
 							style="font-size: 0.9rem"
+							data-text="clearAllBtn"
 						>
 							🗑️ 全データクリア
 						</button>
@@ -97,16 +98,26 @@
 
 				<!-- 計算結果 -->
 				<section class="calculation-results">
-					<h2>🧮 必要素材計算</h2>
+					<h2 data-text="calculation">🧮 必要素材計算</h2>
 					<div class="calc-buttons">
-						<button onclick="calculateAll()" class="primary-calc-btn">
+						<button
+							onclick="calculateAll()"
+							class="primary-calc-btn"
+							data-text="calculateAllBtn"
+						>
 							🏘️ すべての建物をまとめて計算
 						</button>
 						<div class="individual-calc">
 							<select id="calcBuildingSelect">
-								<option value="">建物を選んで個別計算</option>
+								<option value="" data-text="selectBuildingCalc">
+									建物を選んで個別計算
+								</option>
 							</select>
-							<button onclick="calculateBuilding()" class="secondary-btn">
+							<button
+								onclick="calculateBuilding()"
+								class="secondary-btn"
+								data-text="calculateBuildingBtn"
+							>
 								🏠 この建物だけ計算
 							</button>
 						</div>
