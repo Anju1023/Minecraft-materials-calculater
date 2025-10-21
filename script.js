@@ -657,47 +657,10 @@ function updateMaterialList() {
 	const datalist = document.getElementById('materialList');
 	datalist.innerHTML = '';
 
-	// よく使われる材料のリスト
-	const commonMaterials = [
-		'サクラの木材',
-		'サクラの階段',
-		'サクラのハーフブロック',
-		'サクラのフェンス',
-		'オークの木材',
-		'オークの階段',
-		'オークのハーフブロック',
-		'オークのフェンス',
-		'スプルースの木材',
-		'スプルースの階段',
-		'スプルースのハーフブロック',
-		'シラカバの木材',
-		'シラカバの階段',
-		'シラカバのハーフブロック',
-		'石',
-		'丸石',
-		'石レンガ',
-		'石の階段',
-		'石のハーフブロック',
-		'花崗岩',
-		'閃緑岩',
-		'安山岩',
-		'深層岩',
-		'凝灰岩',
-		'砂岩',
-		'砂岩の階段',
-		'砂岩のハーフブロック',
-		'ガラス',
-		'板ガラス',
-		'鉄インゴット',
-		'金インゴット',
-		'松明',
-		'ランタン',
-		'グロウストーン',
-	];
-
-	commonMaterials.forEach((material) => {
+	// 全材料をオートコンプリートに追加
+	Object.keys(materialTranslations).forEach((japaneseName) => {
 		const option = document.createElement('option');
-		option.value = translateMaterial(material);
+		option.value = translateMaterial(japaneseName);
 		datalist.appendChild(option);
 	});
 }
