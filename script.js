@@ -3,6 +3,32 @@
 // プロジェクトデータ
 let buildings = {};
 
+// ローカルストレージからデータを読み込み
+function loadData() {
+	const saved = localStorage.getItem('minecraft-calculator-data');
+	if (saved) {
+		try {
+			buildings = JSON.parse(saved);
+			updateBuildingSelects();
+			updateBuildingsList();
+		} catch (e) {
+			console.error('データの読み込みに失敗しました:', e);
+		}
+	}
+}
+
+// ローカルストレージにデータを保存
+function saveData() {
+	try {
+		localStorage.setItem(
+			'minecraft-calculator-data',
+			JSON.stringify(buildings)
+		);
+	} catch (e) {
+		console.error('データの保存に失敗しました:', e);
+	}
+}
+
 // 建物を追加
 function addBuilding() {
 	const nameInput = document.getElementById('buildingName');
@@ -23,6 +49,7 @@ function addBuilding() {
 
 	updateBuildingSelects();
 	updateBuildingsList();
+	saveData(); // 自動保存
 	showMessage(`✓ 建物「${name}」を追加しました！`, 'success');
 }
 
@@ -57,6 +84,7 @@ function addMaterial() {
 	quantityInput.value = '';
 
 	updateBuildingsList();
+	saveData(); // 自動保存
 	showMessage(
 		`✓ ${buildingName}に「${materialName} x${quantity}」を追加しました`,
 		'success'
@@ -67,6 +95,7 @@ function addMaterial() {
 function deleteMaterial(buildingName, materialName) {
 	delete buildings[buildingName][materialName];
 	updateBuildingsList();
+	saveData(); // 自動保存
 	showMessage(`「${materialName}」を削除しました`, 'success');
 }
 
@@ -76,6 +105,7 @@ function deleteBuilding(buildingName) {
 		delete buildings[buildingName];
 		updateBuildingSelects();
 		updateBuildingsList();
+		saveData(); // 自動保存
 		showMessage(`「${buildingName}」を削除しました`, 'success');
 	}
 }
@@ -509,3 +539,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		);
 	}, 1000);
 });
+// ページ読み込み時にデータを復元
+document.addEventListener('DOMContentLoaded', function () {
+	loadData();
+});
+// 全データをクリア
+function clearAllData() {
+	if (confirm('すべてのデータを削除しますか？この操作は取り消せません。')) {
+		buildings = {};
+		localStorage.removeItem('minecraft-calculator-data');
+		updateBuildingSelects();
+		updateBuildingsList();
+		document.getElementById('results').innerHTML = '';
+		showMessage('✓ すべてのデータを削除しました', 'success');
+	}
+}

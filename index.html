@@ -53,7 +53,23 @@
 
 				<!-- 建物一覧 -->
 				<section class="buildings-list">
-					<h2>🏘️ 建物一覧</h2>
+					<div
+						style="
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+							margin-bottom: var(--spacing-lg);
+						"
+					>
+						<h2>🏘️ 建物一覧</h2>
+						<button
+							onclick="clearAllData()"
+							class="delete-btn"
+							style="font-size: 0.9rem"
+						>
+							🗑️ 全データクリア
+						</button>
+					</div>
 					<div id="buildingsList"></div>
 				</section>
 
