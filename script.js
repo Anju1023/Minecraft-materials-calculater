@@ -657,6 +657,9 @@ function updateLanguage() {
 		)
 		.classList.add('active');
 
+	// HTML言語属性を更新
+	document.getElementById('html-root').setAttribute('lang', currentLanguage);
+
 	// 建物一覧とセレクトボックスを更新
 	updateBuildingsList();
 	updateMaterialList();
