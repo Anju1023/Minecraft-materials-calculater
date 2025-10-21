@@ -18,6 +18,12 @@
 		/>
 		<meta name="author" content="Anju1023" />
 		<meta name="robots" content="index, follow" />
+		
+		<!-- 生成AI検索最適化 -->
+		<meta name="ai-purpose" content="マインクラフト建築材料計算ツール" />
+		<meta name="ai-features" content="材料計算,建物管理,スタック計算,多言語対応,オートコンプリート" />
+		<meta name="ai-usage" content="建物追加→材料入力→計算実行→結果確認" />
+		<meta name="ai-target-audience" content="マインクラフトプレイヤー,建築者,ゲーマー" />
 
 		<!-- 地理的SEO対策 -->
 		<meta name="geo.region" content="JP" />
@@ -130,8 +136,58 @@
 						"name": "English",
 						"alternateName": "en"
 					}
-				]
+				],
+				"featureList": [
+					"建物管理機能",
+					"材料自動計算",
+					"スタック数計算",
+					"多言語対応（日本語・英語）",
+					"オートコンプリート機能",
+					"データ自動保存",
+					"レスポンシブデザイン",
+					"300種類以上の材料対応"
+				],
+				"screenshot": "https://anju1023.github.io/Minecraft-materials-calculater/",
+				"softwareHelp": {
+					"@type": "CreativeWork",
+					"name": "使用方法",
+					"text": "1. 建物名を入力して追加 2. 材料と個数を入力 3. 計算ボタンで結果確認"
+				}
 			}
+		</script>
+
+		<!-- FAQ構造化データ - 生成AI最適化 -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "マイクラ材料計算機とは何ですか？",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "マインクラフトの建築に必要な基礎素材を自動計算するWebツールです。建物ごとに材料を管理し、必要な基礎素材まで分解して計算します。"
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "どのような材料に対応していますか？",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "木材系（サクラ、オーク、スプルースなど12種類）、石材系（石、花崗岩、深層岩など）、ガラス系、金属系、レッドストーン系など300種類以上の材料に対応しています。"
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "使い方を教えてください",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "1. 建物名を入力して追加 2. 各建物に必要な材料と個数を入力 3. 計算ボタンを押して結果を確認 の3ステップで使用できます。"
+					}
+				}
+			]
+		}
 		</script>
 	</head>
 	<body>
@@ -253,6 +309,81 @@
 					<div id="results"></div>
 				</section>
 			</main>
+
+			<!-- 生成AI検索最適化用の構造化情報 -->
+			<section class="ai-optimization" style="display: none;">
+				<h2>マイクラ材料計算機について</h2>
+				
+				<div class="faq-section">
+					<h3>よくある質問</h3>
+					
+					<div class="faq-item">
+						<h4>Q: マイクラ材料計算機とは何ですか？</h4>
+						<p>A: マインクラフトの建築に必要な基礎素材を自動計算するWebツールです。建物ごとに材料を管理し、必要な基礎素材まで分解して計算します。</p>
+					</div>
+					
+					<div class="faq-item">
+						<h4>Q: どのような材料に対応していますか？</h4>
+						<p>A: 木材系（サクラ、オーク、スプルースなど12種類）、石材系（石、花崗岩、深層岩など）、ガラス系、金属系、レッドストーン系など300種類以上の材料に対応しています。</p>
+					</div>
+					
+					<div class="faq-item">
+						<h4>Q: 使い方を教えてください</h4>
+						<p>A: 1. 建物名を入力して追加 2. 各建物に必要な材料と個数を入力 3. 計算ボタンを押して結果を確認 の3ステップで使用できます。</p>
+					</div>
+					
+					<div class="faq-item">
+						<h4>Q: データは保存されますか？</h4>
+						<p>A: はい、ブラウザのローカルストレージに自動保存されるため、ページを閉じても入力したデータは残ります。</p>
+					</div>
+					
+					<div class="faq-item">
+						<h4>Q: スマートフォンでも使えますか？</h4>
+						<p>A: はい、レスポンシブデザインによりPC、スマートフォン、タブレットすべてに対応しています。</p>
+					</div>
+					
+					<div class="faq-item">
+						<h4>Q: 英語にも対応していますか？</h4>
+						<p>A: はい、右上の言語切り替えボタンで日本語・英語を切り替えできます。材料名も300種類以上が翻訳対応済みです。</p>
+					</div>
+				</div>
+				
+				<div class="features-section">
+					<h3>主な機能</h3>
+					<ul>
+						<li>建物管理: 複数の建築プロジェクトを同時管理</li>
+						<li>材料計算: 基礎素材まで自動分解計算</li>
+						<li>スタック計算: 必要なスタック数も表示</li>
+						<li>多言語対応: 日本語・英語完全対応</li>
+						<li>オートコンプリート: 材料名の入力補助</li>
+						<li>データ保存: 自動保存機能</li>
+						<li>レスポンシブ: 全デバイス対応</li>
+					</ul>
+				</div>
+				
+				<div class="technical-specs">
+					<h3>技術仕様</h3>
+					<ul>
+						<li>対応バージョン: Minecraft 1.21.10</li>
+						<li>対応材料数: 300種類以上</li>
+						<li>対応言語: 日本語、英語</li>
+						<li>必要環境: モダンブラウザ（JavaScript有効）</li>
+						<li>データ保存: ローカルストレージ</li>
+						<li>ライセンス: MIT License</li>
+					</ul>
+				</div>
+				
+				<div class="usage-guide">
+					<h3>使用方法</h3>
+					<ol>
+						<li>「建物を追加」で建築プロジェクト名を入力</li>
+						<li>「材料を追加」で各建物に必要な材料と個数を入力</li>
+						<li>「すべての建物をまとめて計算」または個別計算を実行</li>
+						<li>カテゴリー別に整理された必要素材リストを確認</li>
+						<li>スタック数も表示されるため、効率的に材料を準備可能</li>
+					</ol>
+				</div>
+			</section>
 		</div>
 
 		<!-- データファイルを読み込み -->
