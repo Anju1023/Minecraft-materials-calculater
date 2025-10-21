@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>マイクラ材料計算機 🏗️</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>🏗️ マイクラ材料計算機</h1>
+				<p>建築に必要な基礎素材を自動計算します</p>
+			</header>
+
+			<main>
+				<!-- 建物追加セクション -->
+				<section class="add-building">
+					<h2>🏠 建物を追加</h2>
+					<div class="input-group">
+						<input
+							type="text"
+							id="buildingName"
+							placeholder="建物名を入力（例：拠点、倉庫）"
+						/>
+						<button onclick="addBuilding()">建物追加</button>
+					</div>
+				</section>
+
+				<!-- 材料追加セクション -->
+				<section class="add-materials">
+					<h2>📦 材料を追加</h2>
+					<div class="material-form">
+						<select id="buildingSelect">
+							<option value="">建物を選択</option>
+						</select>
+						<input
+							type="text"
+							id="materialName"
+							placeholder="材料名（例：サクラの階段）"
+							list="materialList"
+						/>
+						<datalist id="materialList"></datalist>
+						<input
+							type="number"
+							id="materialQuantity"
+							placeholder="個数"
+							min="1"
+						/>
+						<button onclick="addMaterial()">材料追加</button>
+					</div>
+				</section>
+
+				<!-- 建物一覧 -->
+				<section class="buildings-list">
+					<h2>🏘️ 建物一覧</h2>
+					<div id="buildingsList"></div>
+				</section>
+
+				<!-- 計算結果 -->
+				<section class="calculation-results">
+					<h2>🧮 必要素材計算</h2>
+					<div class="calc-buttons">
+						<button onclick="calculateAll()" class="primary-calc-btn">
+							🏘️ すべての建物をまとめて計算
+						</button>
+						<div class="individual-calc">
+							<select id="calcBuildingSelect">
+								<option value="">建物を選んで個別計算</option>
+							</select>
+							<button onclick="calculateBuilding()" class="secondary-btn">
+								🏠 この建物だけ計算
+							</button>
+						</div>
+					</div>
+					<div id="results"></div>
+				</section>
+			</main>
+		</div>
+
+		<!-- データファイルを読み込み -->
+		<script src="data/stack-sizes.js"></script>
+		<script src="data/recipes-wood.js"></script>
+		<script src="data/recipes-stone.js"></script>
+		<script src="data/recipes-other.js"></script>
+		<script src="data/recipes.js"></script>
+
+		<!-- メインスクリプト -->
+		<script src="script.js"></script>
+	</body>
+</html>

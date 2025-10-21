@@ -1,0 +1,516 @@
+/* Apple Human Interface Guidelines準拠のモダンデザイン */
+
+/* === リセット & ベース === */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	/* Apple Design System Colors */
+	--primary-blue: #007aff;
+	--primary-blue-hover: #0056cc;
+	--secondary-gray: #8e8e93;
+	--tertiary-gray: #c7c7cc;
+	--quaternary-gray: #f2f2f7;
+	--background-primary: #ffffff;
+	--background-secondary: #f2f2f7;
+	--background-tertiary: #ffffff;
+	--text-primary: #000000;
+	--text-secondary: #3c3c43;
+	--text-tertiary: #8e8e93;
+	--separator: #c6c6c8;
+	--success-green: #34c759;
+	--warning-orange: #ff9500;
+	--error-red: #ff3b30;
+	--destructive-red: #ff453a;
+
+	/* Typography */
+	--font-system: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+		'Helvetica Neue', Arial, sans-serif;
+	--font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas,
+		'Courier New', monospace;
+
+	/* Spacing */
+	--spacing-xs: 4px;
+	--spacing-sm: 8px;
+	--spacing-md: 16px;
+	--spacing-lg: 24px;
+	--spacing-xl: 32px;
+	--spacing-xxl: 48px;
+
+	/* Border Radius */
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 16px;
+	--radius-xl: 20px;
+
+	/* Shadows */
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+	--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+	--shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+body {
+	font-family: var(--font-system);
+	background: var(--background-secondary);
+	color: var(--text-primary);
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* === レイアウト === */
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: var(--spacing-lg);
+}
+
+/* === ヘッダー === */
+header {
+	background: var(--background-primary);
+	padding: var(--spacing-xxl) var(--spacing-xl);
+	text-align: center;
+	border-radius: var(--radius-xl);
+	margin-bottom: var(--spacing-xl);
+	box-shadow: var(--shadow-sm);
+}
+
+header h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: var(--text-primary);
+	margin-bottom: var(--spacing-sm);
+	letter-spacing: -0.02em;
+}
+
+header p {
+	font-size: 1.1rem;
+	color: var(--text-secondary);
+	font-weight: 400;
+}
+
+/* === セクション === */
+section {
+	background: var(--background-primary);
+	border-radius: var(--radius-lg);
+	padding: var(--spacing-xl);
+	margin-bottom: var(--spacing-lg);
+	box-shadow: var(--shadow-sm);
+	border: 1px solid var(--separator);
+}
+
+section h2 {
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin-bottom: var(--spacing-lg);
+	letter-spacing: -0.01em;
+}
+
+/* === フォーム要素 === */
+.input-group,
+.material-form {
+	display: flex;
+	gap: var(--spacing-md);
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+input,
+select {
+	padding: var(--spacing-md) var(--spacing-md);
+	border: 1.5px solid var(--separator);
+	border-radius: var(--radius-md);
+	font-size: 1rem;
+	font-family: var(--font-system);
+	background: var(--background-primary);
+	color: var(--text-primary);
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	min-width: 200px;
+}
+
+input:focus,
+select:focus {
+	outline: none;
+	border-color: var(--primary-blue);
+	box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+input::placeholder {
+	color: var(--text-tertiary);
+}
+
+/* === ボタン === */
+button {
+	padding: var(--spacing-md) var(--spacing-lg);
+	border: none;
+	border-radius: var(--radius-md);
+	font-size: 1rem;
+	font-weight: 600;
+	font-family: var(--font-system);
+	cursor: pointer;
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--spacing-xs);
+	min-height: 44px;
+}
+
+/* プライマリボタン */
+button:not(.delete-btn):not(.secondary-btn) {
+	background: var(--primary-blue);
+	color: white;
+}
+
+button:not(.delete-btn):not(.secondary-btn):hover {
+	background: var(--primary-blue-hover);
+	transform: translateY(-1px);
+	box-shadow: var(--shadow-md);
+}
+
+button:not(.delete-btn):not(.secondary-btn):active {
+	transform: translateY(0);
+	box-shadow: var(--shadow-sm);
+}
+
+/* === 削除ボタン === */
+.delete-btn {
+	background: var(--background-secondary);
+	color: var(--error-red);
+	border: 1px solid var(--separator);
+	padding: var(--spacing-sm) var(--spacing-md);
+	font-size: 0.9rem;
+	min-height: 36px;
+}
+
+.delete-btn:hover {
+	background: var(--error-red);
+	color: white;
+	border-color: var(--error-red);
+}
+
+.building-delete {
+	background: var(--background-secondary);
+	color: var(--destructive-red);
+	border: 1px solid var(--separator);
+	padding: var(--spacing-sm) var(--spacing-md);
+	font-weight: 500;
+}
+
+.building-delete:hover {
+	background: var(--destructive-red);
+	color: white;
+	border-color: var(--destructive-red);
+}
+
+.material-delete {
+	background: transparent;
+	color: var(--text-tertiary);
+	border: none;
+	padding: var(--spacing-xs);
+	font-size: 1.2rem;
+	border-radius: 50%;
+	width: 32px;
+	height: 32px;
+	min-height: 32px;
+}
+
+.material-delete:hover {
+	background: var(--error-red);
+	color: white;
+}
+
+/* === 建物カード === */
+.building-card {
+	background: var(--background-primary);
+	border: 1px solid var(--separator);
+	border-radius: var(--radius-lg);
+	padding: var(--spacing-lg);
+	margin-bottom: var(--spacing-md);
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.building-card:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-2px);
+}
+
+.building-card h3 {
+	font-size: 1.3rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin-bottom: var(--spacing-md);
+	letter-spacing: -0.01em;
+}
+
+/* === 材料アイテム === */
+.material-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--spacing-md) 0;
+	border-bottom: 1px solid var(--separator);
+	transition: background-color 0.2s ease;
+}
+
+.material-item:last-child {
+	border-bottom: none;
+}
+
+.material-item:hover {
+	background: var(--quaternary-gray);
+	margin: 0 calc(-1 * var(--spacing-md));
+	padding-left: var(--spacing-md);
+	padding-right: var(--spacing-md);
+	border-radius: var(--radius-sm);
+}
+
+/* === 計算結果 === */
+.calc-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-lg);
+	margin-bottom: var(--spacing-xl);
+}
+
+.primary-calc-btn {
+	background: var(--success-green);
+	color: white;
+	font-size: 1.1rem;
+	padding: var(--spacing-lg) var(--spacing-xl);
+	font-weight: 700;
+}
+
+.primary-calc-btn:hover {
+	background: #28a745;
+	transform: translateY(-2px);
+	box-shadow: var(--shadow-lg);
+}
+
+.individual-calc {
+	display: flex;
+	gap: var(--spacing-md);
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.secondary-btn {
+	background: var(--background-secondary);
+	color: var(--text-primary);
+	border: 1px solid var(--separator);
+}
+
+.secondary-btn:hover {
+	background: var(--tertiary-gray);
+	transform: translateY(-1px);
+	box-shadow: var(--shadow-md);
+}
+
+.results-container {
+	background: var(--background-primary);
+	border-radius: var(--radius-lg);
+	padding: var(--spacing-xl);
+	box-shadow: var(--shadow-sm);
+	border: 1px solid var(--separator);
+}
+
+.results-container h2 {
+	font-size: 1.8rem;
+	font-weight: 700;
+	color: var(--text-primary);
+	margin-bottom: var(--spacing-xl);
+	text-align: center;
+	letter-spacing: -0.02em;
+}
+
+.category {
+	margin-bottom: var(--spacing-xl);
+}
+
+.category h3 {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	margin-bottom: var(--spacing-md);
+	padding-bottom: var(--spacing-sm);
+	border-bottom: 2px solid var(--primary-blue);
+	letter-spacing: -0.01em;
+}
+
+.material-result {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: var(--spacing-md);
+	margin-bottom: var(--spacing-xs);
+	background: var(--quaternary-gray);
+	border-radius: var(--radius-md);
+	transition: all 0.2s ease;
+}
+
+.material-result:hover {
+	background: var(--tertiary-gray);
+	transform: translateX(4px);
+}
+
+.material-name {
+	font-weight: 500;
+	color: var(--text-primary);
+	font-size: 1rem;
+}
+
+.material-quantity {
+	font-weight: 600;
+	color: var(--primary-blue);
+	font-size: 1rem;
+}
+
+.stack-info {
+	font-size: 0.9rem;
+	color: var(--text-tertiary);
+	margin-left: var(--spacing-sm);
+	font-family: var(--font-mono);
+}
+
+/* === メッセージ === */
+.success-message,
+.error-message {
+	padding: var(--spacing-md) var(--spacing-lg);
+	border-radius: var(--radius-md);
+	margin-bottom: var(--spacing-lg);
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+	animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.success-message {
+	background: rgba(52, 199, 89, 0.1);
+	color: var(--success-green);
+	border: 1px solid rgba(52, 199, 89, 0.2);
+}
+
+.success-message::before {
+	content: '✓';
+	font-weight: bold;
+}
+
+.error-message {
+	background: rgba(255, 59, 48, 0.1);
+	color: var(--error-red);
+	border: 1px solid rgba(255, 59, 48, 0.2);
+}
+
+.error-message::before {
+	content: '⚠';
+	font-weight: bold;
+}
+
+/* === アニメーション === */
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.building-card,
+.results-container {
+	animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === レスポンシブデザイン === */
+@media (max-width: 768px) {
+	.container {
+		padding: var(--spacing-md);
+	}
+
+	header {
+		padding: var(--spacing-lg);
+	}
+
+	header h1 {
+		font-size: 2rem;
+	}
+
+	section {
+		padding: var(--spacing-lg);
+	}
+
+	.input-group,
+	.material-form {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.individual-calc {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	input,
+	select,
+	button {
+		width: 100%;
+		min-width: unset;
+	}
+}
+
+/* === ダークモード対応 === */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background-primary: #1c1c1e;
+		--background-secondary: #000000;
+		--background-tertiary: #2c2c2e;
+		--text-primary: #ffffff;
+		--text-secondary: #ebebf5;
+		--text-tertiary: #8e8e93;
+		--separator: #38383a;
+		--quaternary-gray: #2c2c2e;
+		--tertiary-gray: #3a3a3c;
+	}
+
+	.material-result {
+		background: var(--background-tertiary);
+	}
+
+	.material-result:hover {
+		background: var(--tertiary-gray);
+	}
+}
+
+/* === アクセシビリティ === */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+	outline: 2px solid var(--primary-blue);
+	outline-offset: 2px;
+}
