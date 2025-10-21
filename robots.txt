@@ -7,3 +7,5 @@ Sitemap: https://anju1023.github.io/Minecraft-materials-calculater/sitemap.xml
 # 検索エンジン向け情報
 # このサイトはマインクラフトの材料計算ツールです
 # 日本語・英語対応、300種類以上の材料に対応
+# 対象地域: 日本、アジア、全世界
+# Target regions: Japan, Asia, Worldwide

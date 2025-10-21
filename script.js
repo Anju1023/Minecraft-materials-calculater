@@ -660,6 +660,12 @@ function updateLanguage() {
 	// HTML言語属性を更新
 	document.getElementById('html-root').setAttribute('lang', currentLanguage);
 
+	// Dublin Core言語メタデータを更新
+	const dcLanguageMeta = document.querySelector('meta[name="DC.language"]');
+	if (dcLanguageMeta) {
+		dcLanguageMeta.setAttribute('content', currentLanguage);
+	}
+
 	// 建物一覧とセレクトボックスを更新
 	updateBuildingsList();
 	updateMaterialList();
