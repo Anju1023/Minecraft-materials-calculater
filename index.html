@@ -9,34 +9,53 @@
 	<body>
 		<div class="container">
 			<header>
-				<h1>🏗️ マイクラ材料計算機</h1>
-				<p>建築に必要な基礎素材を自動計算します</p>
+				<div class="header-top">
+					<div></div>
+					<div class="language-switcher">
+						<button
+							onclick="switchLanguage('ja')"
+							id="langJa"
+							class="lang-btn active"
+						>
+							🇯🇵 日本語
+						</button>
+						<button onclick="switchLanguage('en')" id="langEn" class="lang-btn">
+							🇺🇸 English
+						</button>
+					</div>
+				</div>
+				<h1 data-text="title">🏗️ マイクラ材料計算機</h1>
+				<p data-text="subtitle">建築に必要な基礎素材を自動計算します</p>
 			</header>
 
 			<main>
 				<!-- 建物追加セクション -->
 				<section class="add-building">
-					<h2>🏠 建物を追加</h2>
+					<h2 data-text="addBuilding">🏠 建物を追加</h2>
 					<div class="input-group">
 						<input
 							type="text"
 							id="buildingName"
+							data-placeholder="buildingNamePlaceholder"
 							placeholder="建物名を入力（例：拠点、倉庫）"
 						/>
-						<button onclick="addBuilding()">建物追加</button>
+						<button onclick="addBuilding()" data-text="addBuildingBtn">
+							建物追加
+						</button>
 					</div>
 				</section>
 
 				<!-- 材料追加セクション -->
 				<section class="add-materials">
-					<h2>📦 材料を追加</h2>
+					<h2 data-text="addMaterials">📦 材料を追加</h2>
 					<div class="material-form">
 						<select id="buildingSelect">
-							<option value="">建物を選択</option>
+							<option value="" data-text="selectBuilding">建物を選択</option>
 						</select>
 						<input
 							type="text"
 							id="materialName"
+							data-placeholder="materialNamePlaceholder"
 							placeholder="材料名（例：サクラの階段）"
 							list="materialList"
 						/>
@@ -44,10 +63,13 @@
 						<input
 							type="number"
 							id="materialQuantity"
+							data-placeholder="quantityPlaceholder"
 							placeholder="個数"
 							min="1"
 						/>
-						<button onclick="addMaterial()">材料追加</button>
+						<button onclick="addMaterial()" data-text="addMaterialBtn">
+							材料追加
+						</button>
 					</div>
 				</section>
 
@@ -95,6 +117,7 @@
 		</div>
 
 		<!-- データファイルを読み込み -->
+		<script src="data/languages.js"></script>
 		<script src="data/stack-sizes.js"></script>
 		<script src="data/recipes-wood.js"></script>
 		<script src="data/recipes-stone.js"></script>

@@ -15,6 +15,13 @@ function loadData() {
 			console.error('データの読み込みに失敗しました:', e);
 		}
 	}
+
+	// 言語設定を読み込み
+	const savedLang = localStorage.getItem('minecraft-calculator-language');
+	if (savedLang && languages[savedLang]) {
+		currentLanguage = savedLang;
+		updateLanguage();
+	}
 }
 
 // ローカルストレージにデータを保存
@@ -35,12 +42,15 @@ function addBuilding() {
 	const name = nameInput.value.trim();
 
 	if (!name) {
-		showMessage('建物名を入力してください', 'error');
+		showMessage(getText('messages.buildingNameRequired'), 'error');
 		return;
 	}
 
 	if (buildings[name]) {
-		showMessage(`「${name}」は既に存在します`, 'error');
+		showMessage(
+			formatText(getText('messages.buildingExists'), { name }),
+			'error'
+		);
 		return;
 	}
 
@@ -50,7 +60,10 @@ function addBuilding() {
 	updateBuildingSelects();
 	updateBuildingsList();
 	saveData(); // 自動保存
-	showMessage(`✓ 建物「${name}」を追加しました！`, 'success');
+	showMessage(
+		formatText(getText('messages.buildingAdded'), { name }),
+		'success'
+	);
 }
 
 // 材料を追加
@@ -553,4 +566,43 @@ function clearAllData() {
 		document.getElementById('results').innerHTML = '';
 		showMessage('✓ すべてのデータを削除しました', 'success');
 	}
+}
+// 言語を切り替え
+function switchLanguage(lang) {
+	if (languages[lang]) {
+		currentLanguage = lang;
+		localStorage.setItem('minecraft-calculator-language', lang);
+		updateLanguage();
+		updateBuildingSelects(); // セレクトボックスも更新
+	}
+}
+
+// 言語表示を更新
+function updateLanguage() {
+	// data-text属性を持つ要素を更新
+	document.querySelectorAll('[data-text]').forEach((element) => {
+		const key = element.getAttribute('data-text');
+		element.textContent = getText(key);
+	});
+
+	// data-placeholder属性を持つ要素を更新
+	document.querySelectorAll('[data-placeholder]').forEach((element) => {
+		const key = element.getAttribute('data-placeholder');
+		element.placeholder = getText(key);
+	});
+
+	// 言語ボタンのアクティブ状態を更新
+	document.querySelectorAll('.lang-btn').forEach((btn) => {
+		btn.classList.remove('active');
+	});
+	document
+		.getElementById(
+			`lang${
+				currentLanguage.charAt(0).toUpperCase() + currentLanguage.slice(1)
+			}`
+		)
+		.classList.add('active');
+
+	// 建物一覧とセレクトボックスを更新
+	updateBuildingsList();
 }

@@ -78,6 +78,42 @@ header {
 	box-shadow: var(--shadow-sm);
 }
 
+.header-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: var(--spacing-lg);
+}
+
+.language-switcher {
+	display: flex;
+	gap: var(--spacing-xs);
+}
+
+.lang-btn {
+	padding: var(--spacing-sm) var(--spacing-md);
+	border: 1px solid var(--separator);
+	border-radius: var(--radius-sm);
+	background: var(--background-secondary);
+	color: var(--text-secondary);
+	font-size: 0.9rem;
+	font-weight: 500;
+	min-height: 36px;
+	transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+	background: var(--tertiary-gray);
+	transform: none;
+	box-shadow: none;
+}
+
+.lang-btn.active {
+	background: var(--primary-blue);
+	color: white;
+	border-color: var(--primary-blue);
+}
+
 header h1 {
 	font-size: 2.5rem;
 	font-weight: 700;
