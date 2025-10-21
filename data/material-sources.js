@@ -22,11 +22,15 @@ const materialSources = {
 			quantity: 1,
 			tool: 'ツルハシ',
 			location: '地下（高度0-79）',
+			recommended: true,
+			efficiency: 'high',
 		},
 		crafting: {
 			name: '丸石 + ネザークォーツ',
 			quantity: '1 + 1',
 			method: '作業台でクラフト',
+			recommended: false,
+			efficiency: 'low',
 		},
 	},
 	閃緑岩: {
@@ -35,11 +39,15 @@ const materialSources = {
 			quantity: 1,
 			tool: 'ツルハシ',
 			location: '地下（高度0-79）',
+			recommended: true,
+			efficiency: 'high',
 		},
 		crafting: {
 			name: '丸石 + ネザークォーツ',
 			quantity: '2 + 2',
 			method: '作業台でクラフト',
+			recommended: false,
+			efficiency: 'low',
 		},
 	},
 	安山岩: {
