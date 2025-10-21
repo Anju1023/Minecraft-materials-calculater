@@ -638,7 +638,7 @@ function updateLanguage() {
 		// 材料名のプレースホルダーの場合、サンプル材料を動的に設定
 		if (key === 'materialNamePlaceholder') {
 			const sampleMaterial =
-				currentLanguage === 'en' ? 'Oak Planks' : 'オークの木材';
+				currentLanguage === 'en' ? 'Oak Planks' : 'オークの板材';
 			placeholderText = formatText(placeholderText, { sample: sampleMaterial });
 		}
 

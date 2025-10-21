@@ -3,7 +3,7 @@ const materialTranslations = {
 	// === 木材系 ===
 	// サクラ
 	サクラの原木: 'Cherry Log',
-	サクラの木材: 'Cherry Planks',
+	サクラの板材: 'Cherry Planks',
 	サクラの階段: 'Cherry Stairs',
 	サクラのハーフブロック: 'Cherry Slab',
 	サクラのフェンス: 'Cherry Fence',
@@ -17,7 +17,7 @@ const materialTranslations = {
 
 	// ペールオーク
 	ペールオークの原木: 'Pale Oak Log',
-	ペールオークの木材: 'Pale Oak Planks',
+	ペールオークの板材: 'Pale Oak Planks',
 	ペールオークの階段: 'Pale Oak Stairs',
 	ペールオークのハーフブロック: 'Pale Oak Slab',
 	ペールオークのフェンス: 'Pale Oak Fence',
@@ -31,7 +31,7 @@ const materialTranslations = {
 
 	// オーク
 	オークの原木: 'Oak Log',
-	オークの木材: 'Oak Planks',
+	オークの板材: 'Oak Planks',
 	オークの階段: 'Oak Stairs',
 	オークのハーフブロック: 'Oak Slab',
 	オークのフェンス: 'Oak Fence',
@@ -45,7 +45,7 @@ const materialTranslations = {
 
 	// スプルース
 	スプルースの原木: 'Spruce Log',
-	スプルースの木材: 'Spruce Planks',
+	スプルースの板材: 'Spruce Planks',
 	スプルースの階段: 'Spruce Stairs',
 	スプルースのハーフブロック: 'Spruce Slab',
 	スプルースのフェンス: 'Spruce Fence',
@@ -59,7 +59,7 @@ const materialTranslations = {
 
 	// シラカバ
 	シラカバの原木: 'Birch Log',
-	シラカバの木材: 'Birch Planks',
+	シラカバの板材: 'Birch Planks',
 	シラカバの階段: 'Birch Stairs',
 	シラカバのハーフブロック: 'Birch Slab',
 	シラカバのフェンス: 'Birch Fence',
@@ -73,7 +73,7 @@ const materialTranslations = {
 
 	// ジャングル
 	ジャングルの原木: 'Jungle Log',
-	ジャングルの木材: 'Jungle Planks',
+	ジャングルの板材: 'Jungle Planks',
 	ジャングルの階段: 'Jungle Stairs',
 	ジャングルのハーフブロック: 'Jungle Slab',
 	ジャングルのフェンス: 'Jungle Fence',
@@ -87,7 +87,7 @@ const materialTranslations = {
 
 	// アカシア
 	アカシアの原木: 'Acacia Log',
-	アカシアの木材: 'Acacia Planks',
+	アカシアの板材: 'Acacia Planks',
 	アカシアの階段: 'Acacia Stairs',
 	アカシアのハーフブロック: 'Acacia Slab',
 	アカシアのフェンス: 'Acacia Fence',
@@ -101,7 +101,7 @@ const materialTranslations = {
 
 	// ダークオーク
 	ダークオークの原木: 'Dark Oak Log',
-	ダークオークの木材: 'Dark Oak Planks',
+	ダークオークの板材: 'Dark Oak Planks',
 	ダークオークの階段: 'Dark Oak Stairs',
 	ダークオークのハーフブロック: 'Dark Oak Slab',
 	ダークオークのフェンス: 'Dark Oak Fence',
@@ -115,7 +115,7 @@ const materialTranslations = {
 
 	// マングローブ
 	マングローブの原木: 'Mangrove Log',
-	マングローブの木材: 'Mangrove Planks',
+	マングローブの板材: 'Mangrove Planks',
 	マングローブの階段: 'Mangrove Stairs',
 	マングローブのハーフブロック: 'Mangrove Slab',
 	マングローブのフェンス: 'Mangrove Fence',
@@ -129,7 +129,7 @@ const materialTranslations = {
 
 	// 竹
 	竹: 'Bamboo',
-	竹の木材: 'Bamboo Planks',
+	竹の板材: 'Bamboo Planks',
 	竹の階段: 'Bamboo Stairs',
 	竹のハーフブロック: 'Bamboo Slab',
 	竹のフェンス: 'Bamboo Fence',
