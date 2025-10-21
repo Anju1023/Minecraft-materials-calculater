@@ -87,7 +87,7 @@ header {
 
 .language-switcher {
 	display: flex;
-	gap: var(--spacing-xs);
+	gap: var(--spacing-sm);
 }
 
 .lang-btn {
@@ -538,6 +538,30 @@ button:not(.delete-btn):not(.secondary-btn):active {
 	.building-delete {
 		width: 100%;
 		justify-content: center;
+	}
+
+	/* 言語切り替えボタンをスマホで控えめに */
+	.language-switcher {
+		gap: var(--spacing-md);
+	}
+
+	.lang-btn {
+		font-size: 0.8rem;
+		padding: var(--spacing-xs) var(--spacing-sm);
+		min-height: 32px;
+		background: transparent;
+		border: 1px solid var(--tertiary-gray);
+		color: var(--text-tertiary);
+	}
+
+	.lang-btn.active {
+		background: var(--quaternary-gray);
+		color: var(--text-primary);
+		border-color: var(--separator);
+	}
+
+	.lang-btn:hover {
+		background: var(--quaternary-gray);
 	}
 }
 
