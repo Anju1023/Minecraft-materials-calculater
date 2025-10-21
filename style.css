@@ -487,6 +487,22 @@ button:not(.delete-btn):not(.secondary-btn):active {
 		word-break: keep-all;
 		overflow-wrap: break-word;
 	}
+
+	/* 建物カードのヘッダーをスマホで縦並びに */
+	.building-card > div:first-child {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+		gap: var(--spacing-md);
+	}
+
+	.building-card h3 {
+		margin-bottom: 0;
+	}
+
+	.building-delete {
+		width: 100%;
+		justify-content: center;
+	}
 }
 
 /* === ダークモード対応 === */
