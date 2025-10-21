@@ -325,6 +325,9 @@ button:not(.delete-btn):not(.secondary-btn):active {
 	margin-bottom: var(--spacing-xl);
 	text-align: center;
 	letter-spacing: -0.02em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .category {
@@ -473,6 +476,13 @@ button:not(.delete-btn):not(.secondary-btn):active {
 	button {
 		width: 100%;
 		min-width: unset;
+	}
+
+	.results-container h2 {
+		font-size: 1.4rem;
+		white-space: normal;
+		overflow: visible;
+		text-overflow: unset;
 	}
 }
 
