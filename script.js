@@ -471,19 +471,30 @@ function displayResults(title, baseMaterials) {
 
 				if (source.mining && source.crafting) {
 					// 推奨方法を先に表示
-					const miningClass = source.mining.recommended ? 'source-option mining recommended' : 'source-option mining alternative';
-					const craftingClass = source.crafting.recommended ? 'source-option crafting recommended' : 'source-option crafting alternative';
-					
-					const miningOption = `<span class="${miningClass}" title="${source.mining.location || ''}">${miningText}: ${source.mining.name}${source.mining.recommended ? ' ⭐' : ''}</span>`;
-					const craftingOption = `<span class="${craftingClass}" title="${source.crafting.method || ''}">${craftingText}: ${source.crafting.name}${source.crafting.recommended ? ' ⭐' : ''}</span>`;
-					
+					const miningClass = source.mining.recommended
+						? 'source-option mining recommended'
+						: 'source-option mining alternative';
+					const craftingClass = source.crafting.recommended
+						? 'source-option crafting recommended'
+						: 'source-option crafting alternative';
+
+					const miningOption = `<span class="${miningClass}" title="${
+						source.mining.location || ''
+					}">${miningText}: ${source.mining.name}${
+						source.mining.recommended ? ' ⭐' : ''
+					}</span>`;
+					const craftingOption = `<span class="${craftingClass}" title="${
+						source.crafting.method || ''
+					}">${craftingText}: ${source.crafting.name}${
+						source.crafting.recommended ? ' ⭐' : ''
+					}</span>`;
+
 					// 推奨を先に表示
 					if (source.mining.recommended) {
 						sourceInfo = `<div class="source-options">${miningOption}${craftingOption}</div>`;
 					} else {
 						sourceInfo = `<div class="source-options">${craftingOption}${miningOption}</div>`;
 					}
-				}
 				} else if (source.mining) {
 					sourceInfo = `<div class="source-info mining" title="${
 						source.mining.location || ''
