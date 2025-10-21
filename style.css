@@ -381,9 +381,6 @@ button:not(.delete-btn):not(.secondary-btn):active {
 }
 
 .material-result {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	padding: var(--spacing-md);
 	margin-bottom: var(--spacing-xs);
 	background: var(--quaternary-gray);
@@ -394,6 +391,67 @@ button:not(.delete-btn):not(.secondary-btn):active {
 .material-result:hover {
 	background: var(--tertiary-gray);
 	transform: translateX(4px);
+}
+
+.material-main {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: var(--spacing-xs);
+}
+
+.source-options {
+	display: flex;
+	gap: var(--spacing-sm);
+	flex-wrap: wrap;
+}
+
+.source-option {
+	padding: var(--spacing-xs) var(--spacing-sm);
+	border-radius: var(--radius-sm);
+	font-size: 0.85rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.source-option.mining {
+	background: rgba(139, 69, 19, 0.1);
+	color: #8b4513;
+	border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.source-option.mining:hover {
+	background: rgba(139, 69, 19, 0.2);
+}
+
+.source-option.crafting {
+	background: rgba(34, 139, 34, 0.1);
+	color: #228b22;
+	border: 1px solid rgba(34, 139, 34, 0.2);
+}
+
+.source-option.crafting:hover {
+	background: rgba(34, 139, 34, 0.2);
+}
+
+.source-info {
+	padding: var(--spacing-xs) var(--spacing-sm);
+	border-radius: var(--radius-sm);
+	font-size: 0.85rem;
+	font-weight: 500;
+}
+
+.source-info.mining {
+	background: rgba(139, 69, 19, 0.1);
+	color: #8b4513;
+	border: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.source-info.crafting {
+	background: rgba(34, 139, 34, 0.1);
+	color: #228b22;
+	border: 1px solid rgba(34, 139, 34, 0.2);
 }
 
 .material-name {

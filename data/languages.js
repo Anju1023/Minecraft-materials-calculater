@@ -72,6 +72,12 @@ const languages = {
 			stacksInfo: '({stacks}スタック)',
 			stacksWithRemaining: '({stacks}スタック + {remaining}個)',
 			noStack: '(スタック不可)',
+
+			// 入手方法
+			mining: '採取',
+			crafting: 'クラフト',
+			miningFrom: '採取: {source}',
+			craftingFrom: 'クラフト: {source}',
 		},
 	},
 
@@ -146,6 +152,12 @@ const languages = {
 			stacksInfo: '({stacks} stacks)',
 			stacksWithRemaining: '({stacks} stacks + {remaining} items)',
 			noStack: '(Cannot stack)',
+
+			// 入手方法
+			mining: 'Mine',
+			crafting: 'Craft',
+			miningFrom: 'Mine: {source}',
+			craftingFrom: 'Craft: {source}',
 		},
 	},
 };

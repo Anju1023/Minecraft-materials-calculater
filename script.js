@@ -460,12 +460,44 @@ function displayResults(title, baseMaterials) {
 
 			const displayName = translateMaterial(material);
 			const unit = currentLanguage === 'en' ? ' items' : '個';
+
+			// 入手方法の情報を取得
+			const source = getMaterialSource(material);
+			let sourceInfo = '';
+
+			if (source) {
+				const miningText = currentLanguage === 'en' ? 'Mine' : '採取';
+				const craftingText = currentLanguage === 'en' ? 'Craft' : 'クラフト';
+
+				if (source.mining && source.crafting) {
+					sourceInfo = `<div class="source-options">
+						<span class="source-option mining" title="${
+							source.mining.location || ''
+						}">${miningText}: ${source.mining.name}</span>
+						<span class="source-option crafting" title="${
+							source.crafting.method || ''
+						}">${craftingText}: ${source.crafting.name}</span>
+					</div>`;
+				} else if (source.mining) {
+					sourceInfo = `<div class="source-info mining" title="${
+						source.mining.location || ''
+					}">${miningText}: ${source.mining.name}</div>`;
+				} else if (source.crafting) {
+					sourceInfo = `<div class="source-info crafting" title="${
+						source.crafting.method || ''
+					}">${craftingText}: ${source.crafting.name}</div>`;
+				}
+			}
+
 			html += `<div class="material-result">
-                <span class="material-name">${displayName}</span>
-                <span>
-                    <span class="material-quantity">× ${quantity}${unit}</span>
-                    ${stackInfo}
-                </span>
+                <div class="material-main">
+                    <span class="material-name">${displayName}</span>
+                    <span>
+                        <span class="material-quantity">× ${quantity}${unit}</span>
+                        ${stackInfo}
+                    </span>
+                </div>
+                ${sourceInfo}
             </div>`;
 		});
 
