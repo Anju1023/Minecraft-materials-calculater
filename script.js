@@ -220,7 +220,7 @@ function calculateAll() {
 		decomposeMaterial(material, quantity, baseMaterials);
 	});
 
-	displayResults('全建物の合計必要素材', baseMaterials);
+	displayResults('🏘️ 合計必要素材', baseMaterials);
 }
 
 // 個別建物の計算

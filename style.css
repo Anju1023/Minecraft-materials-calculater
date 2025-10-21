@@ -479,10 +479,13 @@ button:not(.delete-btn):not(.secondary-btn):active {
 	}
 
 	.results-container h2 {
-		font-size: 1.4rem;
+		font-size: 1.2rem;
+		line-height: 1.3;
 		white-space: normal;
 		overflow: visible;
 		text-overflow: unset;
+		word-break: keep-all;
+		overflow-wrap: break-word;
 	}
 }
 
