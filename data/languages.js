@@ -13,7 +13,7 @@ const languages = {
 
 		// フォーム
 		buildingNamePlaceholder: '建物名を入力（例：拠点、倉庫）',
-		materialNamePlaceholder: '材料名（例：サクラの階段）',
+		materialNamePlaceholder: '材料名（例：{sample}）',
 		quantityPlaceholder: '個数',
 		selectBuilding: '建物を選択',
 		selectBuildingCalc: '建物を選んで個別計算',
@@ -88,7 +88,7 @@ const languages = {
 
 		// Forms
 		buildingNamePlaceholder: 'Enter building name (e.g., Base, Storage)',
-		materialNamePlaceholder: 'Material name (e.g., Cherry Stairs)',
+		materialNamePlaceholder: 'Material name (e.g., {sample})',
 		quantityPlaceholder: 'Quantity',
 		selectBuilding: 'Select Building',
 		selectBuildingCalc: 'Select building for individual calculation',

@@ -633,7 +633,16 @@ function updateLanguage() {
 	// data-placeholder属性を持つ要素を更新
 	document.querySelectorAll('[data-placeholder]').forEach((element) => {
 		const key = element.getAttribute('data-placeholder');
-		element.placeholder = getText(key);
+		let placeholderText = getText(key);
+
+		// 材料名のプレースホルダーの場合、サンプル材料を動的に設定
+		if (key === 'materialNamePlaceholder') {
+			const sampleMaterial =
+				currentLanguage === 'en' ? 'Oak Planks' : 'オークの木材';
+			placeholderText = formatText(placeholderText, { sample: sampleMaterial });
+		}
+
+		element.placeholder = placeholderText;
 	});
 
 	// 言語ボタンのアクティブ状態を更新
