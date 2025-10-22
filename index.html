@@ -192,39 +192,24 @@
 	</head>
 	<body>
 		<div class="container">
-			<!-- 言語切り替えボタン（カード外） -->
-			<div class="language-switcher-container">
-				<div class="language-switcher">
-					<button
-						onclick="switchLanguage('ja')"
-						id="langJa"
-						class="lang-btn active"
-					>
-						🇯🇵 日本語
-					</button>
-					<button onclick="switchLanguage('en')" id="langEn" class="lang-btn">
-						🇺🇸 English
-					</button>
-				</div>
-			</div>
+
 			
 			<header>
-				<h1 data-text="title">🏗️ マイクラ材料計算機</h1>
-				<p data-text="subtitle">建築に必要な基礎素材を自動計算します</p>
+				<h1>🏗️ マイクラ材料計算機</h1>
+				<p>建築に必要な基礎素材を自動計算します</p>
 			</header>
 
 			<main>
 				<!-- 建物追加セクション -->
 				<section class="add-building">
-					<h2 data-text="addBuilding">🏠 建物を追加</h2>
+					<h2>🏠 建物を追加</h2>
 					<div class="input-group">
 						<input
 							type="text"
 							id="buildingName"
-							data-placeholder="buildingNamePlaceholder"
 							placeholder="建物名を入力（例：拠点、倉庫）"
 						/>
-						<button onclick="addBuilding()" data-text="addBuildingBtn">
+						<button onclick="addBuilding()">
 							建物追加
 						</button>
 					</div>
@@ -232,27 +217,25 @@
 
 				<!-- 材料追加セクション -->
 				<section class="add-materials">
-					<h2 data-text="addMaterials">📦 材料を追加</h2>
+					<h2>📦 材料を追加</h2>
 					<div class="material-form">
 						<select id="buildingSelect">
-							<option value="" data-text="selectBuilding">建物を選択</option>
+							<option value="">建物を選択</option>
 						</select>
 						<input
 							type="text"
 							id="materialName"
-							data-placeholder="materialNamePlaceholder"
-							placeholder="材料名（例：サクラの階段）"
+							placeholder="材料名（例：オークの板材）"
 							list="materialList"
 						/>
 						<datalist id="materialList"></datalist>
 						<input
 							type="number"
 							id="materialQuantity"
-							data-placeholder="quantityPlaceholder"
 							placeholder="個数"
 							min="1"
 						/>
-						<button onclick="addMaterial()" data-text="addMaterialBtn">
+						<button onclick="addMaterial()">
 							材料追加
 						</button>
 					</div>
@@ -268,12 +251,11 @@
 							margin-bottom: var(--spacing-lg);
 						"
 					>
-						<h2 data-text="buildingsList">🏘️ 建物一覧</h2>
+						<h2>🏘️ 建物一覧</h2>
 						<button
 							onclick="clearAllData()"
 							class="delete-btn"
 							style="font-size: 0.9rem"
-							data-text="clearAllBtn"
 						>
 							🗑️ 全データクリア
 						</button>
@@ -283,25 +265,23 @@
 
 				<!-- 計算結果 -->
 				<section class="calculation-results">
-					<h2 data-text="calculation">🧮 必要素材計算</h2>
+					<h2>🧮 必要素材計算</h2>
 					<div class="calc-buttons">
 						<button
 							onclick="calculateAll()"
 							class="primary-calc-btn"
-							data-text="calculateAllBtn"
 						>
 							🏘️ すべての建物をまとめて計算
 						</button>
 						<div class="individual-calc">
 							<select id="calcBuildingSelect">
-								<option value="" data-text="selectBuildingCalc">
+								<option value="">
 									建物を選んで個別計算
 								</option>
 							</select>
 							<button
 								onclick="calculateBuilding()"
 								class="secondary-btn"
-								data-text="calculateBuildingBtn"
 							>
 								🏠 この建物だけ計算
 							</button>
@@ -388,8 +368,6 @@
 		</div>
 
 		<!-- データファイルを読み込み -->
-		<script src="data/languages.js"></script>
-		<script src="data/material-translations.js"></script>
 		<script src="data/material-sources.js"></script>
 		<script src="data/stack-sizes.js"></script>
 		<script src="data/recipes-wood.js"></script>

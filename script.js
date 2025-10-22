@@ -15,13 +15,6 @@ function loadData() {
 			console.error('データの読み込みに失敗しました:', e);
 		}
 	}
-
-	// 言語設定を読み込み
-	const savedLang = localStorage.getItem('minecraft-calculator-language');
-	if (savedLang && languages[savedLang]) {
-		currentLanguage = savedLang;
-		updateLanguage();
-	}
 }
 
 // ローカルストレージにデータを保存
@@ -42,15 +35,12 @@ function addBuilding() {
 	const name = nameInput.value.trim();
 
 	if (!name) {
-		showMessage(getText('messages.buildingNameRequired'), 'error');
+		showMessage('建物名を入力してください', 'error');
 		return;
 	}
 
 	if (buildings[name]) {
-		showMessage(
-			formatText(getText('messages.buildingExists'), { name }),
-			'error'
-		);
+		showMessage(`「${name}」は既に存在します`, 'error');
 		return;
 	}
 
@@ -60,10 +50,7 @@ function addBuilding() {
 	updateBuildingSelects();
 	updateBuildingsList();
 	saveData(); // 自動保存
-	showMessage(
-		formatText(getText('messages.buildingAdded'), { name }),
-		'success'
-	);
+	showMessage(`✓ 建物「${name}」を追加しました！`, 'success');
 }
 
 // 材料を追加
