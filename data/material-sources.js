@@ -56,11 +56,15 @@ const materialSources = {
 			quantity: 1,
 			tool: 'ツルハシ',
 			location: '地下（高度0-79）',
+			recommended: true,
+			efficiency: 'high',
 		},
 		crafting: {
 			name: '閃緑岩 + 丸石',
 			quantity: '1 + 1',
 			method: '作業台でクラフト',
+			recommended: false,
+			efficiency: 'low',
 		},
 	},
 	深層岩: {
