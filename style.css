@@ -68,6 +68,18 @@ body {
 	padding: var(--spacing-lg);
 }
 
+/* === 言語切り替え（カード外） === */
+.language-switcher-container {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: var(--spacing-lg);
+}
+
+.language-switcher {
+	display: flex;
+	gap: var(--spacing-sm);
+}
+
 /* === ヘッダー === */
 header {
 	background: var(--background-primary);
@@ -76,18 +88,6 @@ header {
 	border-radius: var(--radius-xl);
 	margin-bottom: var(--spacing-xl);
 	box-shadow: var(--shadow-sm);
-}
-
-.header-top {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: var(--spacing-lg);
-}
-
-.language-switcher {
-	display: flex;
-	gap: var(--spacing-sm);
 }
 
 .lang-btn {

@@ -192,22 +192,23 @@
 	</head>
 	<body>
 		<div class="container">
-			<header>
-				<div class="header-top">
-					<div></div>
-					<div class="language-switcher">
-						<button
-							onclick="switchLanguage('ja')"
-							id="langJa"
-							class="lang-btn active"
-						>
-							🇯🇵 日本語
-						</button>
-						<button onclick="switchLanguage('en')" id="langEn" class="lang-btn">
-							🇺🇸 English
-						</button>
-					</div>
+			<!-- 言語切り替えボタン（カード外） -->
+			<div class="language-switcher-container">
+				<div class="language-switcher">
+					<button
+						onclick="switchLanguage('ja')"
+						id="langJa"
+						class="lang-btn active"
+					>
+						🇯🇵 日本語
+					</button>
+					<button onclick="switchLanguage('en')" id="langEn" class="lang-btn">
+						🇺🇸 English
+					</button>
 				</div>
+			</div>
+			
+			<header>
 				<h1 data-text="title">🏗️ マイクラ材料計算機</h1>
 				<p data-text="subtitle">建築に必要な基礎素材を自動計算します</p>
 			</header>
