@@ -64,36 +64,29 @@ function addMaterial() {
 	const quantity = parseInt(quantityInput.value);
 
 	if (!buildingName) {
-		showMessage(getText('messages.selectBuildingRequired'), 'error');
+		showMessage('建物を選択してください', 'error');
 		return;
 	}
 
 	if (!materialName) {
-		showMessage(getText('messages.materialNameRequired'), 'error');
+		showMessage('材料名を入力してください', 'error');
 		return;
 	}
 
 	if (!quantity || quantity <= 0) {
-		showMessage(getText('messages.quantityRequired'), 'error');
+		showMessage('正しい個数を入力してください', 'error');
 		return;
 	}
 
-	// 英語で入力された場合は日本語に変換して保存
-	const japaneseName = getJapaneseMaterialName(materialName);
-	buildings[buildingName][japaneseName] = quantity;
+	buildings[buildingName][materialName] = quantity;
 
 	materialInput.value = '';
 	quantityInput.value = '';
 
 	updateBuildingsList();
 	saveData(); // 自動保存
-	const displayName = translateMaterial(japaneseName);
 	showMessage(
-		formatText(getText('messages.materialAdded'), {
-			building: buildingName,
-			material: displayName,
-			quantity,
-		}),
+		`✓ ${buildingName}に「${materialName} x${quantity}」を追加しました`,
 		'success'
 	);
 }
@@ -103,31 +96,17 @@ function deleteMaterial(buildingName, materialName) {
 	delete buildings[buildingName][materialName];
 	updateBuildingsList();
 	saveData(); // 自動保存
-	showMessage(
-		formatText(getText('messages.materialDeleted'), { material: materialName }),
-		'success'
-	);
+	showMessage(`「${materialName}」を削除しました`, 'success');
 }
 
 // 建物を削除
 function deleteBuilding(buildingName) {
-	if (
-		confirm(
-			formatText(getText('messages.confirmDeleteBuilding'), {
-				building: buildingName,
-			})
-		)
-	) {
+	if (confirm(`「${buildingName}」を削除しますか？`)) {
 		delete buildings[buildingName];
 		updateBuildingSelects();
 		updateBuildingsList();
 		saveData(); // 自動保存
-		showMessage(
-			formatText(getText('messages.buildingDeleted'), {
-				building: buildingName,
-			}),
-			'success'
-		);
+		showMessage(`「${buildingName}」を削除しました`, 'success');
 	}
 }
 
@@ -142,8 +121,8 @@ function updateBuildingSelects() {
 		// オプションをクリア
 		select.innerHTML =
 			selectId === 'buildingSelect'
-				? `<option value="">${getText('selectBuilding')}</option>`
-				: `<option value="">${getText('selectBuildingCalc')}</option>`;
+				? '<option value="">建物を選択</option>'
+				: '<option value="">建物を選んで個別計算</option>';
 
 		// 建物を追加
 		Object.keys(buildings).forEach((name) => {
@@ -186,7 +165,7 @@ function updateBuildingsList() {
 		title.textContent = `🏠 ${buildingName}`;
 
 		const deleteBtn = document.createElement('button');
-		deleteBtn.textContent = getText('deleteBuildingBtn');
+		deleteBtn.textContent = '🗑️ 建物削除';
 		deleteBtn.className = 'delete-btn building-delete';
 		deleteBtn.onclick = () => deleteBuilding(buildingName);
 
@@ -196,7 +175,7 @@ function updateBuildingsList() {
 
 		if (Object.keys(materials).length === 0) {
 			const empty = document.createElement('p');
-			empty.textContent = getText('messages.noMaterialsRegistered');
+			empty.textContent = '材料未登録';
 			empty.style.color = '#666';
 			card.appendChild(empty);
 		} else {
@@ -206,15 +185,12 @@ function updateBuildingsList() {
 
 				const info = document.createElement('span');
 				info.className = 'material-info';
-				const displayName = translateMaterial(materialName);
-				const unit = currentLanguage === 'en' ? 'items' : '個';
-				info.textContent = `${displayName}: ${quantity}${unit}`;
+				info.textContent = `${materialName}: ${quantity}個`;
 
 				const delBtn = document.createElement('button');
 				delBtn.textContent = '❌';
 				delBtn.className = 'delete-btn material-delete';
-				delBtn.title =
-					currentLanguage === 'en' ? 'Delete material' : '材料を削除';
+				delBtn.title = '材料を削除';
 				delBtn.onclick = () => deleteMaterial(buildingName, materialName);
 
 				item.appendChild(info);
@@ -274,7 +250,7 @@ function calculateAll() {
 		decomposeMaterial(material, quantity, baseMaterials);
 	});
 
-	displayResults(getText('totalMaterials'), baseMaterials);
+	displayResults('🏘️ 合計必要素材', baseMaterials);
 }
 
 // 個別建物の計算
@@ -283,13 +259,13 @@ function calculateBuilding() {
 	const buildingName = select.value;
 
 	if (!buildingName) {
-		showMessage(getText('messages.selectBuildingToCalculate'), 'error');
+		showMessage('計算する建物を選択してください', 'error');
 		return;
 	}
 
 	const materials = buildings[buildingName];
 	if (Object.keys(materials).length === 0) {
-		showMessage(getText('messages.noMaterials'), 'error');
+		showMessage('材料が登録されていません', 'error');
 		return;
 	}
 
@@ -298,10 +274,7 @@ function calculateBuilding() {
 		decomposeMaterial(material, quantity, baseMaterials);
 	});
 
-	displayResults(
-		formatText(getText('buildingMaterials'), { building: buildingName }),
-		baseMaterials
-	);
+	displayResults(`🏠 ${buildingName}の必要素材`, baseMaterials);
 }
 
 // 結果を表示
@@ -309,9 +282,7 @@ function displayResults(title, baseMaterials) {
 	const container = document.getElementById('results');
 
 	if (Object.keys(baseMaterials).length === 0) {
-		container.innerHTML = `<p>${getText(
-			'messages.noMaterialsToCalculate'
-		)}</p>`;
+		container.innerHTML = '<p>計算する材料がありません</p>';
 		return;
 	}
 
