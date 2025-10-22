@@ -502,74 +502,10 @@ function showMessage(message, type) {
 	}, 3000);
 }
 
-// 材料名の自動補完リストを作成
-function setupMaterialAutocomplete() {
-	const datalist = document.getElementById('materialList');
-	const allMaterials = new Set();
-
-	// レシピから材料名を収集
-	Object.keys(RECIPES).forEach((material) => {
-		allMaterials.add(material);
-		Object.keys(RECIPES[material]).forEach((ingredient) => {
-			if (ingredient !== 'yield') {
-				allMaterials.add(ingredient);
-			}
-		});
-	});
-
-	// よく使われる基礎素材も追加
-	const commonMaterials = [
-		'オークの原木',
-		'スプルースの原木',
-		'シラカバの原木',
-		'ジャングルの原木',
-		'アカシアの原木',
-		'ダークオークの原木',
-		'サクラの原木',
-		'ペールオークの原木',
-		'マングローブの原木',
-		'石',
-		'丸石',
-		'花崗岩',
-		'閃緑岩',
-		'安山岩',
-		'深層岩',
-		'凝灰岩',
-		'砂',
-		'ガラス',
-		'鉄インゴット',
-		'金インゴット',
-		'銅インゴット',
-		'ダイヤモンド',
-		'ネザライトインゴット',
-		'石炭',
-		'草ブロック',
-		'スイートベリー',
-		'飾り壺',
-		'サクラの葉',
-		'オークの葉',
-		'ツタ',
-		'レッドストーンダスト',
-		'エンダーパール',
-	];
-
-	commonMaterials.forEach((material) => allMaterials.add(material));
-
-	// datalistに追加
-	Array.from(allMaterials)
-		.sort()
-		.forEach((material) => {
-			const option = document.createElement('option');
-			option.value = material;
-			datalist.appendChild(option);
-		});
-}
-
 // 初期化
 document.addEventListener('DOMContentLoaded', function () {
 	loadData();
 	updateMaterialList();
-	setupMaterialAutocomplete();
 
 	// Enterキーイベント
 	document
