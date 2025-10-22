@@ -673,3 +673,38 @@ select:focus-visible {
 	outline: 2px solid var(--primary-blue);
 	outline-offset: 2px;
 }
+/* === コピー機能 === */
+.copy-section {
+	margin-top: var(--spacing-xl);
+	padding-top: var(--spacing-lg);
+	border-top: 1px solid var(--separator);
+	text-align: center;
+}
+
+.copy-btn {
+	background: var(--primary-blue);
+	color: white;
+	border: none;
+	padding: var(--spacing-md) var(--spacing-xl);
+	border-radius: var(--radius-md);
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+}
+
+.copy-btn:hover {
+	background: var(--primary-blue-hover);
+	transform: translateY(-1px);
+	box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+	.copy-btn {
+		width: 100%;
+		justify-content: center;
+	}
+}

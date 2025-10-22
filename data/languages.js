@@ -78,6 +78,13 @@ const languages = {
 			crafting: 'クラフト',
 			miningFrom: '採取: {source}',
 			craftingFrom: 'クラフト: {source}',
+
+			// コピー機能
+			copyToClipboard: 'クリップボードにコピー',
+			copySuccess: '✓ クリップボードにコピーしました！',
+			copyError: 'コピーする結果がありません',
+			generatedAt: '生成日時',
+			source: '出典',
 		},
 	},
 
@@ -158,6 +165,13 @@ const languages = {
 			crafting: 'Craft',
 			miningFrom: 'Mine: {source}',
 			craftingFrom: 'Craft: {source}',
+
+			// コピー機能
+			copyToClipboard: 'Copy to Clipboard',
+			copySuccess: '✓ Copied to clipboard!',
+			copyError: 'No results to copy',
+			generatedAt: 'Generated',
+			source: 'Source',
 		},
 	},
 };

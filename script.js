@@ -521,7 +521,13 @@ function displayResults(title, baseMaterials) {
 		html += '</div>';
 	});
 
-	html += '</div>';
+	html += `
+		<div class="copy-section">
+			<button onclick="copyResults()" class="copy-btn">
+				📋 ${getText('copyToClipboard')}
+			</button>
+		</div>
+	</div>`;
 	container.innerHTML = html;
 }
 
@@ -730,4 +736,89 @@ function updateMaterialList() {
 		option.value = translateMaterial(japaneseName);
 		datalist.appendChild(option);
 	});
+}
+// 計算結果をクリップボードにコピー
+function copyResults() {
+	const resultsContainer = document.querySelector('.results-container');
+	if (!resultsContainer) {
+		showMessage(getText('copyError'), 'error');
+		return;
+	}
+
+	// テキスト形式で結果を生成
+	let copyText = '';
+	const title = resultsContainer.querySelector('h2').textContent;
+	copyText += `${title}\n`;
+	copyText += '='.repeat(title.length) + '\n\n';
+
+	const categories = resultsContainer.querySelectorAll('.category');
+	categories.forEach((category) => {
+		const categoryName = category.querySelector('h3').textContent;
+		copyText += `【${categoryName}】\n`;
+
+		const materials = category.querySelectorAll('.material-result');
+		materials.forEach((material) => {
+			const materialName = material.querySelector('.material-name').textContent;
+			const quantity = material.querySelector('.material-quantity').textContent;
+			const stackInfo = material.querySelector('.stack-info');
+			const stackText = stackInfo ? ` ${stackInfo.textContent}` : '';
+
+			copyText += `  • ${materialName} ${quantity}${stackText}\n`;
+
+			// 入手方法も追加
+			const sourceOptions = material.querySelector('.source-options');
+			const sourceInfo = material.querySelector('.source-info');
+
+			if (sourceOptions) {
+				const options = sourceOptions.querySelectorAll('.source-option');
+				options.forEach((option) => {
+					const isRecommended = option.classList.contains('recommended');
+					const prefix = isRecommended ? '    ⭐ ' : '    💡 ';
+					copyText += `${prefix}${option.textContent.replace(' ⭐', '')}\n`;
+				});
+			} else if (sourceInfo) {
+				copyText += `    💡 ${sourceInfo.textContent}\n`;
+			}
+		});
+		copyText += '\n';
+	});
+
+	// 生成日時を追加
+	const now = new Date();
+	const dateStr =
+		currentLanguage === 'en'
+			? now.toLocaleString('en-US')
+			: now.toLocaleString('ja-JP');
+	copyText += `\n${getText('generatedAt')}: ${dateStr}\n`;
+	copyText += `${getText(
+		'source'
+	)}: マイクラ材料計算機 (https://anju1023.github.io/Minecraft-materials-calculater/)`;
+
+	// クリップボードにコピー
+	navigator.clipboard
+		.writeText(copyText)
+		.then(() => {
+			showMessage(
+				currentLanguage === 'en'
+					? '✓ Copied to clipboard!'
+					: '✓ クリップボードにコピーしました！',
+				'success'
+			);
+		})
+		.catch((err) => {
+			// フォールバック: テキストエリアを使用
+			const textArea = document.createElement('textarea');
+			textArea.value = copyText;
+			document.body.appendChild(textArea);
+			textArea.select();
+			document.execCommand('copy');
+			document.body.removeChild(textArea);
+
+			showMessage(
+				currentLanguage === 'en'
+					? '✓ Copied to clipboard!'
+					: '✓ クリップボードにコピーしました！',
+				'success'
+			);
+		});
 }
