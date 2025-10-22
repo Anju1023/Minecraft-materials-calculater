@@ -388,10 +388,8 @@ function displayResults(title, baseMaterials) {
 	Object.entries(categories).forEach(([categoryName, items]) => {
 		if (items.length === 0) return;
 
-		const translatedCategoryName =
-			getText(`categories.${categoryName}`) || categoryName;
 		html += `<div class="category">
-            <h3>${translatedCategoryName}</h3>`;
+            <h3>${categoryName}</h3>`;
 
 		items.forEach(([material, quantity]) => {
 			const stackSize = getStackSize(material);
@@ -400,32 +398,24 @@ function displayResults(title, baseMaterials) {
 
 			let stackInfo = '';
 			if (stackSize === 1) {
-				stackInfo = `<span class="stack-info">${getText(
-					'messages.noStack'
-				)}</span>`;
+				stackInfo = '<span class="stack-info">(スタック不可)</span>';
 			} else if (stacks > 0) {
 				stackInfo =
 					remaining > 0
-						? `<span class="stack-info">${formatText(
-								getText('messages.stacksWithRemaining'),
-								{ stacks, remaining }
-						  )}</span>`
-						: `<span class="stack-info">${formatText(
-								getText('messages.stacksInfo'),
-								{ stacks }
-						  )}</span>`;
+						? `<span class="stack-info">(${stacks}スタック + ${remaining}個)</span>`
+						: `<span class="stack-info">(${stacks}スタック)</span>`;
 			}
 
-			const displayName = translateMaterial(material);
-			const unit = currentLanguage === 'en' ? ' items' : '個';
+			const displayName = material;
+			const unit = '個';
 
 			// 入手方法の情報を取得
 			const source = getMaterialSource(material);
 			let sourceInfo = '';
 
 			if (source) {
-				const miningText = currentLanguage === 'en' ? 'Mine' : '採取';
-				const craftingText = currentLanguage === 'en' ? 'Craft' : 'クラフト';
+				const miningText = '採取';
+				const craftingText = 'クラフト';
 
 				if (source.mining && source.crafting) {
 					// 推奨方法を先に表示
@@ -482,7 +472,7 @@ function displayResults(title, baseMaterials) {
 	html += `
 		<div class="copy-section">
 			<button onclick="copyResults()" class="copy-btn">
-				📋 ${getText('copyToClipboard')}
+				📋 クリップボードにコピー
 			</button>
 		</div>
 	</div>`;
@@ -616,82 +606,45 @@ document.addEventListener('DOMContentLoaded', function () {
 // ページ読み込み時にデータを復元（統合済み）
 // 全データをクリア
 function clearAllData() {
-	if (confirm(getText('messages.confirmClearAll'))) {
+	if (confirm('すべてのデータを削除しますか？この操作は取り消せません。')) {
 		buildings = {};
 		localStorage.removeItem('minecraft-calculator-data');
 		updateBuildingSelects();
 		updateBuildingsList();
 		document.getElementById('results').innerHTML = '';
-		showMessage(getText('messages.allDataCleared'), 'success');
+		showMessage('✓ すべてのデータを削除しました', 'success');
 	}
 }
 // 言語を切り替え
-function switchLanguage(lang) {
-	if (languages[lang]) {
-		currentLanguage = lang;
-		localStorage.setItem('minecraft-calculator-language', lang);
-		updateLanguage();
-		updateBuildingSelects(); // セレクトボックスも更新
-	}
-}
 
-// 言語表示を更新
-function updateLanguage() {
-	// data-text属性を持つ要素を更新
-	document.querySelectorAll('[data-text]').forEach((element) => {
-		const key = element.getAttribute('data-text');
-		element.textContent = getText(key);
-	});
-
-	// data-placeholder属性を持つ要素を更新
-	document.querySelectorAll('[data-placeholder]').forEach((element) => {
-		const key = element.getAttribute('data-placeholder');
-		let placeholderText = getText(key);
-
-		// 材料名のプレースホルダーの場合、サンプル材料を動的に設定
-		if (key === 'materialNamePlaceholder') {
-			const sampleMaterial =
-				currentLanguage === 'en' ? 'Oak Planks' : 'オークの板材';
-			placeholderText = formatText(placeholderText, { sample: sampleMaterial });
-		}
-
-		element.placeholder = placeholderText;
-	});
-
-	// 言語ボタンのアクティブ状態を更新
-	document.querySelectorAll('.lang-btn').forEach((btn) => {
-		btn.classList.remove('active');
-	});
-	document
-		.getElementById(
-			`lang${
-				currentLanguage.charAt(0).toUpperCase() + currentLanguage.slice(1)
-			}`
-		)
-		.classList.add('active');
-
-	// HTML言語属性を更新
-	document.getElementById('html-root').setAttribute('lang', currentLanguage);
-
-	// Dublin Core言語メタデータを更新
-	const dcLanguageMeta = document.querySelector('meta[name="DC.language"]');
-	if (dcLanguageMeta) {
-		dcLanguageMeta.setAttribute('content', currentLanguage);
-	}
-
-	// 建物一覧とセレクトボックスを更新
-	updateBuildingsList();
-	updateMaterialList();
-}
 // 材料のオートコンプリートリストを更新
 function updateMaterialList() {
 	const datalist = document.getElementById('materialList');
 	datalist.innerHTML = '';
 
-	// 全材料をオートコンプリートに追加
-	Object.keys(materialTranslations).forEach((japaneseName) => {
+	// よく使われる材料のリスト
+	const commonMaterials = [
+		'オークの板材',
+		'オークの階段',
+		'オークのハーフブロック',
+		'サクラの板材',
+		'サクラの階段',
+		'サクラのハーフブロック',
+		'石',
+		'丸石',
+		'石レンガ',
+		'花崗岩',
+		'閃緑岩',
+		'安山岩',
+		'ガラス',
+		'板ガラス',
+		'鉄インゴット',
+		'松明',
+	];
+
+	commonMaterials.forEach((material) => {
 		const option = document.createElement('option');
-		option.value = translateMaterial(japaneseName);
+		option.value = material;
 		datalist.appendChild(option);
 	});
 }
@@ -699,7 +652,7 @@ function updateMaterialList() {
 function copyResults() {
 	const resultsContainer = document.querySelector('.results-container');
 	if (!resultsContainer) {
-		showMessage(getText('copyError'), 'error');
+		showMessage('コピーする結果がありません', 'error');
 		return;
 	}
 
@@ -743,25 +696,15 @@ function copyResults() {
 
 	// 生成日時を追加
 	const now = new Date();
-	const dateStr =
-		currentLanguage === 'en'
-			? now.toLocaleString('en-US')
-			: now.toLocaleString('ja-JP');
-	copyText += `\n${getText('generatedAt')}: ${dateStr}\n`;
-	copyText += `${getText(
-		'source'
-	)}: マイクラ材料計算機 (https://anju1023.github.io/Minecraft-materials-calculater/)`;
+	const dateStr = now.toLocaleString('ja-JP');
+	copyText += `\n生成日時: ${dateStr}\n`;
+	copyText += `出典: マイクラ材料計算機 (https://anju1023.github.io/Minecraft-materials-calculater/)`;
 
 	// クリップボードにコピー
 	navigator.clipboard
 		.writeText(copyText)
 		.then(() => {
-			showMessage(
-				currentLanguage === 'en'
-					? '✓ Copied to clipboard!'
-					: '✓ クリップボードにコピーしました！',
-				'success'
-			);
+			showMessage('✓ クリップボードにコピーしました！', 'success');
 		})
 		.catch((err) => {
 			// フォールバック: テキストエリアを使用
@@ -772,11 +715,6 @@ function copyResults() {
 			document.execCommand('copy');
 			document.body.removeChild(textArea);
 
-			showMessage(
-				currentLanguage === 'en'
-					? '✓ Copied to clipboard!'
-					: '✓ クリップボードにコピーしました！',
-				'success'
-			);
+			showMessage('✓ クリップボードにコピーしました！', 'success');
 		});
 }
